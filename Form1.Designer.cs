@@ -30,7 +30,7 @@
         {
             this.groupFood = new System.Windows.Forms.GroupBox();
             this.btnInvoice = new System.Windows.Forms.Button();
-            this.numUpDown = new System.Windows.Forms.NumericUpDown();
+            this.numQty = new System.Windows.Forms.NumericUpDown();
             this.lblQty = new System.Windows.Forms.Label();
             this.rdDessert = new System.Windows.Forms.RadioButton();
             this.rdDrink = new System.Windows.Forms.RadioButton();
@@ -51,21 +51,21 @@
             this.txtDelivery = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSubtotal = new System.Windows.Forms.TextBox();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.btnRemove = new System.Windows.Forms.Button();
+            this.listView = new System.Windows.Forms.ListView();
             this.Item = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Units = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Rate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Subtotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnRemove = new System.Windows.Forms.Button();
             this.groupFood.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numQty)).BeginInit();
             this.groupDelivery.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupFood
             // 
             this.groupFood.Controls.Add(this.btnInvoice);
-            this.groupFood.Controls.Add(this.numUpDown);
+            this.groupFood.Controls.Add(this.numQty);
             this.groupFood.Controls.Add(this.lblQty);
             this.groupFood.Controls.Add(this.rdDessert);
             this.groupFood.Controls.Add(this.rdDrink);
@@ -86,14 +86,15 @@
             this.btnInvoice.TabIndex = 3;
             this.btnInvoice.Text = "Add To Invoice";
             this.btnInvoice.UseVisualStyleBackColor = true;
+            this.btnInvoice.Click += new System.EventHandler(this.btnInvoice_Click);
             // 
-            // numUpDown
+            // numQty
             // 
-            this.numUpDown.Location = new System.Drawing.Point(42, 127);
-            this.numUpDown.Name = "numUpDown";
-            this.numUpDown.Size = new System.Drawing.Size(47, 20);
-            this.numUpDown.TabIndex = 2;
-            this.numUpDown.Value = new decimal(new int[] {
+            this.numQty.Location = new System.Drawing.Point(42, 127);
+            this.numQty.Name = "numQty";
+            this.numQty.Size = new System.Drawing.Size(47, 20);
+            this.numQty.TabIndex = 2;
+            this.numQty.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -115,7 +116,6 @@
             this.rdDessert.Name = "rdDessert";
             this.rdDessert.Size = new System.Drawing.Size(61, 17);
             this.rdDessert.TabIndex = 0;
-            this.rdDessert.TabStop = true;
             this.rdDessert.Text = "Dessert";
             this.rdDessert.UseVisualStyleBackColor = true;
             // 
@@ -126,7 +126,6 @@
             this.rdDrink.Name = "rdDrink";
             this.rdDrink.Size = new System.Drawing.Size(72, 17);
             this.rdDrink.TabIndex = 0;
-            this.rdDrink.TabStop = true;
             this.rdDrink.Text = "Soft Drink";
             this.rdDrink.UseVisualStyleBackColor = true;
             // 
@@ -137,7 +136,6 @@
             this.rdFries.Name = "rdFries";
             this.rdFries.Size = new System.Drawing.Size(47, 17);
             this.rdFries.TabIndex = 0;
-            this.rdFries.TabStop = true;
             this.rdFries.Text = "Fries";
             this.rdFries.UseVisualStyleBackColor = true;
             // 
@@ -148,7 +146,6 @@
             this.rdBurger.Name = "rdBurger";
             this.rdBurger.Size = new System.Drawing.Size(56, 17);
             this.rdBurger.TabIndex = 0;
-            this.rdBurger.TabStop = true;
             this.rdBurger.Text = "Burger";
             this.rdBurger.UseVisualStyleBackColor = true;
             // 
@@ -175,6 +172,7 @@
             this.rdPickUp.TabStop = true;
             this.rdPickUp.Text = "Eat In / Pickup";
             this.rdPickUp.UseVisualStyleBackColor = true;
+            this.rdPickUp.CheckedChanged += new System.EventHandler(this.rdPickUp_CheckedChanged);
             // 
             // rdZone3
             // 
@@ -186,6 +184,7 @@
             this.rdZone3.TabStop = true;
             this.rdZone3.Text = "Zone 3";
             this.rdZone3.UseVisualStyleBackColor = true;
+            this.rdZone3.CheckedChanged += new System.EventHandler(this.rdZone3_CheckedChanged);
             // 
             // rdZone2
             // 
@@ -197,6 +196,7 @@
             this.rdZone2.TabStop = true;
             this.rdZone2.Text = "Zone 2";
             this.rdZone2.UseVisualStyleBackColor = true;
+            this.rdZone2.CheckedChanged += new System.EventHandler(this.rdZone2_CheckedChanged);
             // 
             // rdZone1
             // 
@@ -208,6 +208,7 @@
             this.rdZone1.TabStop = true;
             this.rdZone1.Text = "Zone 1";
             this.rdZone1.UseVisualStyleBackColor = true;
+            this.rdZone1.CheckedChanged += new System.EventHandler(this.rdZone1_CheckedChanged);
             // 
             // btnClear
             // 
@@ -217,6 +218,7 @@
             this.btnClear.TabIndex = 2;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnExit
             // 
@@ -226,6 +228,7 @@
             this.btnExit.TabIndex = 2;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // lblTotal
             // 
@@ -258,8 +261,10 @@
             // 
             this.txtTax.Location = new System.Drawing.Point(445, 293);
             this.txtTax.Name = "txtTax";
+            this.txtTax.ReadOnly = true;
             this.txtTax.Size = new System.Drawing.Size(106, 20);
             this.txtTax.TabIndex = 4;
+            this.txtTax.Text = "7%";
             // 
             // lblDelivery
             // 
@@ -295,29 +300,20 @@
             this.txtSubtotal.Size = new System.Drawing.Size(106, 20);
             this.txtSubtotal.TabIndex = 4;
             // 
-            // listView1
+            // listView
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Item,
             this.Units,
             this.Rate,
             this.Subtotal});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(172, 26);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(379, 210);
-            this.listView1.TabIndex = 5;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Location = new System.Drawing.Point(172, 245);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(123, 23);
-            this.btnRemove.TabIndex = 6;
-            this.btnRemove.Text = "Remove Item";
-            this.btnRemove.UseVisualStyleBackColor = true;
+            this.listView.HideSelection = false;
+            this.listView.Location = new System.Drawing.Point(172, 26);
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(379, 210);
+            this.listView.TabIndex = 5;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            this.listView.View = System.Windows.Forms.View.Details;
             // 
             // Item
             // 
@@ -339,13 +335,23 @@
             this.Subtotal.Text = "Subtotal";
             this.Subtotal.Width = 84;
             // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(172, 245);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(123, 23);
+            this.btnRemove.TabIndex = 6;
+            this.btnRemove.Text = "Remove Item";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 421);
             this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listView);
             this.Controls.Add(this.txtSubtotal);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtTax);
@@ -364,7 +370,7 @@
             this.Text = "Form1";
             this.groupFood.ResumeLayout(false);
             this.groupFood.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numQty)).EndInit();
             this.groupDelivery.ResumeLayout(false);
             this.groupDelivery.PerformLayout();
             this.ResumeLayout(false);
@@ -380,7 +386,7 @@
         private System.Windows.Forms.RadioButton rdBurger;
         private System.Windows.Forms.Label lblQty;
         private System.Windows.Forms.RadioButton rdDessert;
-        private System.Windows.Forms.NumericUpDown numUpDown;
+        private System.Windows.Forms.NumericUpDown numQty;
         private System.Windows.Forms.Button btnInvoice;
         private System.Windows.Forms.GroupBox groupDelivery;
         private System.Windows.Forms.RadioButton rdPickUp;
@@ -397,7 +403,7 @@
         private System.Windows.Forms.TextBox txtDelivery;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSubtotal;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.ColumnHeader Item;
         private System.Windows.Forms.ColumnHeader Units;
