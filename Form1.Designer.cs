@@ -57,6 +57,8 @@
             this.Rate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Subtotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnRemove = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
+            this.printInvoice = new System.Drawing.Printing.PrintDocument();
             this.groupFood.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQty)).BeginInit();
             this.groupDelivery.SuspendLayout();
@@ -345,11 +347,26 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
+            // btnImprimir
+            // 
+            this.btnImprimir.Location = new System.Drawing.Point(445, 345);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(106, 23);
+            this.btnImprimir.TabIndex = 7;
+            this.btnImprimir.Text = "Imprimir factura";
+            this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
+            // printInvoice
+            // 
+            this.printInvoice.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Imprimir);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 421);
+            this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.listView);
             this.Controls.Add(this.txtSubtotal);
@@ -409,6 +426,8 @@
         private System.Windows.Forms.ColumnHeader Units;
         private System.Windows.Forms.ColumnHeader Rate;
         private System.Windows.Forms.ColumnHeader Subtotal;
+        private System.Windows.Forms.Button btnImprimir;
+        private System.Drawing.Printing.PrintDocument printInvoice;
     }
 }
 
