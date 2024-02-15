@@ -1,5 +1,9 @@
 # Test INVENTEK 
 
+<p align="center">
+  <img src="https://i.ibb.co/N2Dh8S3/img-impresion.png" alt="muestra modulo impresión" />
+</p>
+
 ## Declaración de variables y precios predeterminados
 Se definen variables para los precios de diferentes productos y opciones de entrega, así como para el subtotal, impuestos y total de la factura.
 
