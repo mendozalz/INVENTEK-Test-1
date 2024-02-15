@@ -97,7 +97,7 @@ namespace INVENTEK_Test_1
             subtotal += itemTotal;
          }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void UpdateInvoiceDetails()
         {
             this.Close();
         }
@@ -335,7 +335,8 @@ namespace INVENTEK_Test_1
 
             double totalAmount = subtotal + taxAmount;
 
-            e.Graphics.DrawString("-----------------------------------------------------------", font, Brushes.Black, new RectangleF(270, y += 40, width, 20));e.Graphics.DrawString($"Subtotal: {subtotal.ToString("C2", CultureInfo.CreateSpecificCulture("en-US"))}", font, Brushes.Black, new RectangleF(280, y += 20, width, 20));
+                e.Graphics.DrawString("-----------------------------------------------------------", font, Brushes.Black, new RectangleF(270, y += 40, width, 20));
+                e.Graphics.DrawString($"Subtotal: {subtotal.ToString("C2", CultureInfo.CreateSpecificCulture("en-US"))}", font, Brushes.Black, new RectangleF(280, y += 20, width, 20));
             e.Graphics.DrawString($"Tax: {taxAmount.ToString("C2", CultureInfo.CreateSpecificCulture("en-US"))}", font, Brushes.Black, new RectangleF(280, y += 30, width, 20));
             e.Graphics.DrawString($"Total: {totalAmount.ToString("C2", CultureInfo.CreateSpecificCulture("en-US"))}", font, Brushes.Black, new RectangleF(280, y += 30, width, 20));
         }
