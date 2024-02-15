@@ -5,11 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml.Serialization;
+
 
 namespace INVENTEK_Test_1
 {
@@ -27,12 +29,18 @@ namespace INVENTEK_Test_1
         double zona3 = 4.00;
         double eatIn = 0;
 
-        // total, subtota y tax
+        // Total, subtota y tax
         double subtotal = 0;
         double tax = 0.07;
         double total = 0;
 
+        // Ruta imagen de imagotipo para la impresión
         string imagen = @"C:\Users\MENDO\Desktop\C#\INVENTEK-Test#1\img\imagotipo.png";
+
+        // Nombre predeterminado del documento a imprimir
+        string nombreArchivoPredeterminado = "Factura.pdf";
+
+
         public Form1()
         {
             InitializeComponent();
@@ -332,5 +340,99 @@ namespace INVENTEK_Test_1
             e.Graphics.DrawString($"Total: {totalAmount.ToString("C2", CultureInfo.CreateSpecificCulture("en-US"))}", font, Brushes.Black, new RectangleF(280, y += 30, width, 20));
         }
 
+        // Guardar y cargar transacción
+
+        private void btnSaveTransaction_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Transaction transaccion = new Transaction
+                {
+                    Items = new List<TransactionItem>(),
+                    Subtotal = subtotal,
+                    Tax = tax,
+                    Total = total
+                };
+
+                foreach (ListViewItem item in listView.Items)
+                {
+                    TransactionItem itemTransaccion = new TransactionItem
+                    {
+                        Nombre = item.SubItems[0].Text,
+                        Cantidad = Convert.ToInt32(item.SubItems[1].Text),
+                        Precio = Convert.ToDouble(item.SubItems[2].Text),
+                        Total = Convert.ToDouble(item.SubItems[3].Text)
+                    };
+                    transaccion.Items.Add(itemTransaccion);
+                }
+
+                XmlSerializer serializer = new XmlSerializer(typeof(Transaction));
+                using (TextWriter writer = new StreamWriter(@"C:\Users\MENDO\Desktop\C#\INVENTEK-Test#1\Transactions\transaccion.xml"))
+                {
+                    serializer.Serialize(writer, transaccion);
+                }
+
+                MessageBox.Show("Transacción guardada correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Se ha producido un error al guardar la transacción: " + ex.Message);
+            }
+        }
+
+        private void btnLoadTransaction_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(Transaction));
+                using (Stream reader = new FileStream(@"C:\Users\MENDO\Desktop\C#\INVENTEK-Test#1\Transactions\transaccion.xml", FileMode.Open))
+                {
+                    Transaction transaccion = (Transaction)serializer.Deserialize(reader);
+
+                    listView.Items.Clear();
+
+                    foreach (TransactionItem item in transaccion.Items)
+                    {
+                        ListViewItem listViewItem = new ListViewItem(item.Nombre);
+                        listViewItem.SubItems.Add(item.Cantidad.ToString());
+                        listViewItem.SubItems.Add(item.Precio.ToString());
+                        listViewItem.SubItems.Add(item.Total.ToString());
+                        listView.Items.Add(listViewItem);
+                    }
+
+                    subtotal = transaccion.Subtotal;
+                    tax = transaccion.Tax;
+                    total = transaccion.Total;
+                    txtSubtotal.Text = subtotal.ToString("C2", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
+                    txtTotal.Text = total.ToString("C2", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
+                }
+
+                MessageBox.Show("Transacción cargada correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Se ha producido un error al cargar la transacción: " + ex.Message);
+            }
+        }
+
     }
+
+    public class TransactionItem
+    {
+        public string Nombre { get; set; }
+        public int Cantidad { get; set; }
+        public double Precio { get; set; }
+        public double Total { get; set; }
+    }
+
+    public class Transaction
+    {
+        public List<TransactionItem> Items { get; set; }
+        public double Subtotal { get; set; }
+        public double Tax { get; set; }
+        public double Total { get; set; }
+    }
+
+
 }
+

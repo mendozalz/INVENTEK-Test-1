@@ -59,6 +59,8 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.printInvoice = new System.Drawing.Printing.PrintDocument();
+            this.btnSaveTransaction = new System.Windows.Forms.Button();
+            this.btnLoadTransaction = new System.Windows.Forms.Button();
             this.groupFood.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQty)).BeginInit();
             this.groupDelivery.SuspendLayout();
@@ -361,11 +363,33 @@
             // 
             this.printInvoice.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Imprimir);
             // 
+            // btnSaveTransaction
+            // 
+            this.btnSaveTransaction.Location = new System.Drawing.Point(22, 345);
+            this.btnSaveTransaction.Name = "btnSaveTransaction";
+            this.btnSaveTransaction.Size = new System.Drawing.Size(110, 28);
+            this.btnSaveTransaction.TabIndex = 8;
+            this.btnSaveTransaction.Text = "Save Transaction";
+            this.btnSaveTransaction.UseVisualStyleBackColor = true;
+            this.btnSaveTransaction.Click += new System.EventHandler(this.btnSaveTransaction_Click);
+            // 
+            // btnLoadTransaction
+            // 
+            this.btnLoadTransaction.Location = new System.Drawing.Point(22, 378);
+            this.btnLoadTransaction.Name = "btnLoadTransaction";
+            this.btnLoadTransaction.Size = new System.Drawing.Size(110, 28);
+            this.btnLoadTransaction.TabIndex = 8;
+            this.btnLoadTransaction.Text = "Load Transaction";
+            this.btnLoadTransaction.UseVisualStyleBackColor = true;
+            this.btnLoadTransaction.Click += new System.EventHandler(this.btnLoadTransaction_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 421);
+            this.Controls.Add(this.btnLoadTransaction);
+            this.Controls.Add(this.btnSaveTransaction);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.listView);
@@ -428,6 +452,8 @@
         private System.Windows.Forms.ColumnHeader Subtotal;
         private System.Windows.Forms.Button btnImprimir;
         private System.Drawing.Printing.PrintDocument printInvoice;
+        private System.Windows.Forms.Button btnSaveTransaction;
+        private System.Windows.Forms.Button btnLoadTransaction;
     }
 }
 

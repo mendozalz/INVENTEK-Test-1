@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Transaction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Items>
+    <TransactionItem>
+      <Nombre>Fries</Nombre>
+      <Cantidad>1</Cantidad>
+      <Precio>2.99</Precio>
+      <Total>2.99</Total>
+    </TransactionItem>
+  </Items>
+  <Subtotal>2.99</Subtotal>
+  <Tax>0.07</Tax>
+  <Total>3.1993</Total>
+</Transaction>
