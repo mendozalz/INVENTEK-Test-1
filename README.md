@@ -1,4 +1,4 @@
-# Test INVENTEK 
+# Test INVENTEK
 
 <p align="center">
   <img src="https://i.ibb.co/N2Dh8S3/img-impresion.png" alt="muestra modulo impresión" />
